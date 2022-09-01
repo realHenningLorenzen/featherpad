@@ -1,9 +1,7 @@
 name: featherpad # you probably want to 'snapcraft register <name>'
 version: '1.3.1'
-summary: FeatherPad is a lightweight Qt plain-text editor for Linux.
-description: |
-  TODO
 
+adopt-info: featherpad
 grade: devel # must be 'stable' to release into candidate/stable channels
 confinement: devmode # use 'strict' once you have the right plugs and slots
 base: core20
@@ -11,10 +9,30 @@ compression: lzo
 
 parts:
   featherpad:
+    parse-info:
+      - usr/share/metainfo/featherpad.metainfo.xml
     plugin: cmake
     source: https://github.com/tsujan/FeatherPad.git
     source-tag: 'V1.3.1'
+    build-snaps:
+      - kde-frameworks-5-96-qt-5-15-5-core20-sdk
+      - kde-frameworks-5-96-qt-5-15-5-core20
+    build-packages:
+      - libhunspell-dev
+    stage-packages:
+      - libhunspell-1.7-0
+    cmake-parameters:
+      - "-DKDE_INSTALL_USE_QT_SYS_PATHS=ON"
+      - "-DCMAKE_INSTALL_PREFIX=/usr"
+      - "-DCMAKE_BUILD_TYPE=Release"
+      - "-DENABLE_TESTING=OFF"
+      - "-DBUILD_TESTING=OFF"
+      - "-DKDE_SKIP_TEST_SETTINGS=ON"
 
 apps:
   featherpad:
     command: usr/bin/featherpad
+    extensions:
+      - kde-neon
+    plugs:
+      - home
