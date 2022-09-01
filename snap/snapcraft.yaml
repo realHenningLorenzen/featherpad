@@ -31,6 +31,7 @@ parts:
 
 apps:
   featherpad:
+    common-id: com.github.FeatherPad
     command: usr/bin/featherpad
     extensions:
       - kde-neon
