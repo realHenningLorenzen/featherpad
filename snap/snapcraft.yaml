@@ -14,11 +14,11 @@ parts:
     plugin: cmake
     source: https://github.com/tsujan/FeatherPad.git
     source-tag: 'V1.3.1'
-    build-snaps:
-      - kde-frameworks-5-96-qt-5-15-5-core20-sdk
-      - kde-frameworks-5-96-qt-5-15-5-core20
     build-packages:
       - libhunspell-dev
+      - qtbase5-dev
+      - libqt5svg5-dev
+      - qttools5-dev-tools
     stage-packages:
       - libhunspell-1.7-0
     cmake-parameters:
